@@ -1,0 +1,25 @@
+<%= form_for(@film_vue) do |f| %>
+  <% if @film_vue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@film_vue.errors.count, "error") %> prohibited this film_vue from being saved:</h2>
+
+      <ul>
+      <% @film_vue.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id_utilisateur %><br>
+    <%= f.number_field :id_utilisateur %>
+  </div>
+  <div class="field">
+    <%= f.label :id_film %><br>
+    <%= f.number_field :id_film %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
