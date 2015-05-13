@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :film_vues
+  resources :administrateurs
+  resources :utilisateurs
   get 'thrailer/jouer'
 
   get 'thrailer/suggestion'

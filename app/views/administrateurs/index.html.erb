@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Administrateurs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pseudo</th>
+      <th>Password</th>
+      <th>Mail</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @administrateurs.each do |administrateur| %>
+      <tr>
+        <td><%= administrateur.pseudo %></td>
+        <td><%= administrateur.password %></td>
+        <td><%= administrateur.mail %></td>
+        <td><%= link_to 'Show', administrateur %></td>
+        <td><%= link_to 'Edit', edit_administrateur_path(administrateur) %></td>
+        <td><%= link_to 'Destroy', administrateur, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Administrateur', new_administrateur_path %>
