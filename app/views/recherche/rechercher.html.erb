@@ -1,0 +1,11 @@
+<div class="col-md-10 col-md-offset-1" style="margin-top:100px;border: 1px solid;border-bottom: none">
+</div>
+<div class="col-md-10 col-md-offset-1">
+	<% @dernier_films.each do |film| %>
+		<% if film %>
+			<% Tmdb::Movie.trailers(film['id'])['youtube'].each do |trailer| %>
+				<%= link_to "#{film['title']} - #{trailer['name']}", "http://www.youtube.com/watch?v=#{trailer['source']}" %><br />
+			<% end %>
+		<% end %>
+	<% end %>
+</div>
