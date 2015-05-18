@@ -1,3 +1,16 @@
-<div class="col-md-8 col-md-offset-1" style="margin-top:100px;">
-____________________________________________________________________________________________________________________________________________________________________________________________________
-</div>
+<div class="col-md-10 col-md-offset-1">
+<!-- emplacement du trailer youtube -->
+	<div class="col-md-10 col-md-offset-1" style="border: solid 1px; height:500px;">
+
+<!-- barre -->
+	<div class="col-md-12" style="margin-top:50px;margin-bottom:50px;border: 1px solid;border-bottom: none"></div>
+
+<!-- suggestion -->
+	<!-- trailer du même film -->
+	<div class="col-md-6">
+		<h3> Du même film :</h3>
+		<%= @film_trailer.each do |trailer| %>
+			<%= if trailer %>
+				<div style="margin-top: 10px; margin-bottom: 10px;">
+					<%= link_to "#{image_tag("#{@configuration.base_url}w154#{@film_image['file_path']}") if film_image['file_path'] %>
+				</div> 
