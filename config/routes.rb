@@ -2,11 +2,10 @@ Rails.application.routes.draw do
   resources :film_vues
   resources :administrateurs
   resources :utilisateurs
-  resources :thrailer
 
   root 'recherche#rechercher'
 
-  get 'thrailer/jouer'
+  #get 'thrailer/jouer'
 
   get 'thrailer/suggestion'
 
@@ -14,14 +13,14 @@ Rails.application.routes.draw do
 
   get 'recherche/afficher'
 
-  get '/thrailer/:id', to: 'thrailer#jouer'
+  get '/thrailer/:id/:source', to: 'thrailer#jouer', as: "thrailer"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-76341
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
