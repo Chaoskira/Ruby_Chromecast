@@ -1,13 +1,19 @@
 <div class="col-md-10 col-md-offset-1 col-xs-offset-1 col-xs-10" style="margin-top:100px;border: 1px solid;border-bottom: none">
 </div>
-<div class="col-md-10 col-md-offset-1">
+<div class="col-md-10" style="margin-left:50px;">
 	<% @dernier_films.each do |film| %>
 		<% if film && Tmdb::Movie.images(film['id'])['posters'] %>
 			<% Tmdb::Movie.trailers(film['id'])['youtube'].first(1).each do |trailer| %>
-				<div class="col-md-5 col-md-offset-1">
-				<%= image_tag("#{@configuration.base_url}w154#{Tmdb::Movie.detail(film['id'])['poster_path']}") if Tmdb::Movie.detail(film['id'])['poster_path'] %>
-				<%= link_to "#{film['title']} - #{trailer['name']}", "http://www.youtube.com/watch?v=#{trailer['source']}" %>
-				</div>
+					<div class="col-md-5 col-md-offset-1" style="margin-top:50px;">
+						<%= image_tag("#{@configuration.base_url}w154#{Tmdb::Movie.detail(film['id'])['poster_path']}", size:"200x300") if Tmdb::Movie.detail(film['id'])['poster_path'] %>
+						<div style="margin-top:-300px; font-size:20px;" class="col-md-offset-4 col-md-10">
+							<%= film['title'] %> - <%= trailer['name'] %>
+						</div>
+						<div style="margin-top: -240px; text-align:justify" class="col-md-10 col-md-offset-4">
+							<%= Tmdb::Movie.detail(film['id'])['overview'] %>
+						</div>
+						<button class="btn btn-default col-md-offset-10 col-md-3 col-xs-offset-5 col-xs-2 btn-primary" style="margin-top:-50px;">Watch the thrailer</button>
+					</div>
 			<% end %>
 		<% end %>
 	<% end %>
