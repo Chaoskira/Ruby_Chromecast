@@ -1,19 +1,7 @@
 <div class="col-md-10 col-md-offset-1">
 <!-- emplacement du trailer youtube -->
-	<% @film_trailer['youtube'].each do |trailer| %>
-		<% if trailer %>
-			<% if @num_trailer == @num %>
-				<% @source = trailer['source'] %>
-				<% @num = 0 %>
-				<% break %>
-			<% else %>
-				<% @num = @num + 1; %>
-			<% end %>
-		<% end %>
-	<% end %>
 	
-
-	<div class="video youtube col-md-10 col-md-offset-1" style="height:600px;"><iframe width="100%" height="100%" src="//www.youtube.com/embed/<%= @source %>" frameborder="0" allowfullscreen></iframe></div>
+	<div class="video youtube col-md-10 col-md-offset-1" style="height:600px;"><iframe width="100%" height="100%" src="//www.youtube.com/embed/<%= params['source'] %>" frameborder="0" allowfullscreen></iframe></div>
 
 <!-- barre -->
 	<div class="col-md-12" style="margin-top:50px;margin-bottom:50px;border: 1px solid;border-bottom: none"></div>
@@ -25,12 +13,11 @@
 		<% if @film_trailer['youtube'].count > 0 %>
 			<% @film_trailer['youtube'].each do |trailer| %>
 				<% if trailer %>
-					<% if @num != @num_trailer %>
+					<% if trailer['source'] != params['source'] %>
 						<div style="margin-top: 10px; margin-bottom: 10px;">
-							<%= link_to "#{trailer['name']}", "http://www.youtube.com/watch?v=#{trailer['source']}" %>
+							<%= link_to "#{trailer['name']}", thrailer_path(:id=>@film_detail['id'],:source=>trailer['source']) %>
 						</div>
 					<% end %>
-					<% @num = @num +1 %>
 				<% end %>
 			<% end %>
 		<% end %>
@@ -39,7 +26,7 @@
 		<h3> Suggestion :</h3>
 		<% @film_similaire.first(4).each do |similaire| %>
 			<% if similaire %>
-				<% Tmdb::Movie.trailers(similaire['id']).first(1).each do |trailer| %>
+				<% Tmdb::Movie.trailers(similaire['id'])['youtube'].first(1).each do |trailer| %>
 					<% if trailer %>
 						<div style="margin-top:50px;">
 							<%= image_tag("#{@configuration.base_url}w154#{Tmdb::Movie.detail(similaire['id'])['poster_path']}", size:"100x150") if Tmdb::Movie.detail(similaire['id'])['poster_path'] %>
@@ -49,7 +36,7 @@
 							<div style="margin-top: -120px; text-align:justify" class="col-md-10 col-md-offset-4">
 								<%= Tmdb::Movie.detail(similaire['id'])['overview'] %>
 							</div>
-							<button class="btn btn-default col-md-offset-10 col-md-3 col-xs-offset-5 col-xs-2 btn-primary" style="margin-top:-50px;">Watch the thrailer</button>
+							<button class="btn btn-default col-md-offset-10 col-md-3 col-xs-offset-5 col-xs-2 btn-primary" style="margin-top:-50px;"><%=link_to "Watch the thrailer", thrailer_path(:id=>similaire['id'],:source=>trailer['source']) %></button>
 						</div>
 					<% end %>
 				<% end %>
