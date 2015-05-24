@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  resources :film_vues
-  resources :administrateurs
-  resources :utilisateurs
 
   root 'recherche#rechercher'
 

@@ -5,5 +5,7 @@ class RechercheController < ApplicationController
   end
 
   def afficher
+  	@search = Tmdb::Movie.find(params[:rec]);
+  	@index = 0;
   end
 end
