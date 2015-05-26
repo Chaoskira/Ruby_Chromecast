@@ -38,7 +38,7 @@
 								<h4>
 									<%= similaire['title'] %> - <%= trailer['name'] %> <!-- On affiche le titre du film et le titre du trailer -->
 								</h4>
-								<div>
+								<div class="justif">
 									<%= Tmdb::Movie.detail(similaire['id'])['overview'] %> <!-- On affiche l'overview -->
 								</div>
 							</div>

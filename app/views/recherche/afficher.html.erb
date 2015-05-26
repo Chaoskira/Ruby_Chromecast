@@ -11,7 +11,7 @@
 						<h4>
 							<%= film.title %> - <%= trailer['name'] %> <!-- On affiche le titre du film et le titre du trailer -->
 						</h4>
-						<div>
+						<div class="justif">
 							<%= Tmdb::Movie.detail(film.id)['overview'] %> <!-- On affiche l'overview -->
 						</div>
 					</div>
